@@ -1,0 +1,29 @@
+
+<div class="row g-0">
+  <div class="col" *ngFor="let item of this.previsaoClima_7Dias">
+    <div class="card">
+        <div class="card-header">
+            {{item.dataPrevisao_}}
+            <br>
+            {{item.dataPrevisao_Semana}}
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <tbody class="txt-sm">
+                  <tr>
+                    <td colspan="2">{{item.clima}}</td>
+                  </tr>
+                  <tr>
+                    <td>Mínima:</td>
+                    <td class="txt-right">{{item.temperaturaMinima}} &deg;C</td>
+                  </tr>
+                  <tr>
+                    <td>Máxima:</td>
+                    <td class="txt-right">{{item.temperaturaMaxima}} &deg;C</td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</div>

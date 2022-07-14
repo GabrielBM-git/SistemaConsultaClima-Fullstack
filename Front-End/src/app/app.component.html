@@ -1,0 +1,77 @@
+
+<div class="container">
+
+  <br>
+
+  <div class="row">
+      <span class="text-center txt-lgx">{{title}}</span>
+  </div>
+
+  <br>
+
+  <div class="row">
+      <div class="col">
+          <div class="card">
+              <div class="card-header txt-md">
+                  Cidades mais quentes hoje
+              </div>
+              <div class="card-body">
+                  <table class="table txt-sm">
+                      <tbody>
+                        <tr *ngFor="let item of this.previsaoClima_Maximas">
+                          <td>{{item.cidade.nome}} / {{item.cidade.estado.uf}}</td>
+                          <td class="txt-right">Máx: {{item.temperaturaMaxima}} &deg;C</td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div class="col">
+          <div class="card">
+              <div class="card-header txt-md">
+                  Cidades mais frias hoje
+              </div>
+              <div class="card-body">
+                  <table class="table txt-sm">
+                      <tbody>
+                        <tr *ngFor="let item of this.previsaoClima_Minimas">
+                          <td>{{item.cidade.nome}} / {{item.cidade.estado.uf}}</td>
+                          <td class="txt-right">Máx: {{item.temperaturaMaxima}} &deg;C</td>
+                        </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>    
+  </div>
+
+  <br>
+
+  <form [formGroup]="modelForm">
+    <div class="input-group mb-3">
+        <input id="txt_busca" type="text" (keyup.enter)="Buscar()" formControlName="cidade" class="form-control" placeholder="Digite o nome da cidade para pesquisar" aria-label="Digite o nome da cidade para pesquisar" aria-describedby="button-pesquisar">
+        <button (click)="Buscar()" class="btn btn-outline-secondary" type="button" [disabled]="!modelForm.value.cidade" id="button-pesquisar">Buscar</button>
+    </div>
+  </form>
+
+  <div class="row">
+      
+      <div class="col-2"></div>
+      
+      <div class="col">
+          <p class="text-center txt-lg">Clima para os próximos 7 dias para a cidade de {{this.cidade}}</p>
+      </div>
+
+      <div class="col-2">
+          <select id="select_group" (change)="onGroupSelect($event.target);" class="form-select form-select-sm">
+              <option selected>Selecione a Cidade ...</option>
+              <option *ngFor="let item of this.previsaoClima_Cidades" value="{{item.nome}}">{{item.nome}}</option>
+          </select>
+      </div>
+
+  </div>
+
+  <app-display [previsaoClima_7Dias]=this.previsaoClima_7Dias></app-display>
+
+</div>
